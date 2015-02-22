@@ -91,22 +91,22 @@
 
 int PIEZO_OUTPUT_PIN = 8;
 //array of notes
-int minuet[] = {_D5,_G4,_A4,_B4,_C5,_D5,_G4,_G4,_E5,_C5,_D5,_E5,_FS5,_G5,_G4,_G4,_C5,_D5,_C5,_B4,_A4,_B4,_C5,_B4,_A4,_G4,_FS4,_G4,_A4,_B4,_G4,_A4,_D5,_G4,_A4,_B4,_C5,_D5,_G4,_G4};
+int finale[] = {_G4,_E4,_C4,_C4,_C4,_E4,_F4,_G4,_F4,_E4,_F4,_D4,_D4,_D4,_F4,_G4,_A4,_G4,_F4,_E4,_C4,_C4,_C4,_C5,_C5,_B4,_A4,_G4,_F4,_D4,_D4,_D4,_D5,_C5,_B4,_A4,_G4,_E4};
 //note lengths - 80: half note, 40: quarter note, 20: eight note, etc.
-int beats[] = {40,20,20,20,20,40,40,40,40,20,20,20,20,40,40,40,40,20,20,20,20,40,20,20,20,20,40,20,20,20,20,120,40,20,20,20,20,40,40,40};
-int tempo = 100;
+int beats[] = {20,40,20,40,20,40,20,20,20,20,40,20,40,20,40,20,20,20,20,40,20,40,20,40,20,20,20,20,40,20,40,20,40,20,20,20,20,20};
+int tempo = 70;
 void setup() {
-  //Iterate through the song Minuet's notes
-  for (int i = 0; i <sizeof(minuet)/2; i++) {
+  //Iterate through the song Finale's notes
+  for (int i = 0; i <sizeof(finale)/2; i++) {
     //Grab the default duration
     int duration = tempo;
     //Check if the asked for index does not exceed the beat array size
     if(sizeof(beats)/2 -1 >= i){
-      //Take in the given note length, divide by 10, multiply by 100
+      //Take in the given note length, divide by 10, multiply by tempo
       duration = tempo * beats[i]/10;
     }
     //Sound the piezo!
-    tone(PIEZO_OUTPUT_PIN, minuet[i],duration);
+    tone(PIEZO_OUTPUT_PIN, finale[i],duration);
     //Minimal delay between notes
     delay(duration*1.2);
   }
